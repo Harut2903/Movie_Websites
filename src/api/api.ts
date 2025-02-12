@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { FilmsType, GenresType } from '../types'
 
-
-type GET_GENRES_TYPE ={
+type GET_GENRES_TYPE = {
     genres : Array<GenresType>
 }
 
@@ -15,7 +14,6 @@ type GET_FILMS_TYPE = {
 
 const instance = axios.create({
     baseURL : 'https://api.themoviedb.org/3/'
-
 })
 
 export const FilmsAPI = {
@@ -24,5 +22,11 @@ export const FilmsAPI = {
     },
     getFilms(pageCount : number, language : string){
         return instance.get<GET_FILMS_TYPE>(`discover/movie?api_key=${import.meta.env.VITE_API_KEY}&language=${language}&page=${pageCount}`)
+    },
+    getOneFilm(id : any, language : string){
+        return instance.get(`/movie/${id}?api_key=${import.meta.env.VITE_API_KEY}&language=${language}`)
+    },
+    searchFilm(text : string){
+        return instance.get(`search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${text}`)
     }
 }

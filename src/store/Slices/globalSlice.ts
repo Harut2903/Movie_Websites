@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    language : "en-US"
-}
 
+// en-US || ru-RU
+const initialState = {
+    language : 'en-US'
+}
 const globalSlice = createSlice({
     name : "globalSlice",
     initialState,
@@ -11,7 +12,7 @@ const globalSlice = createSlice({
         changeLanguage(state, action){
             state.language = action.payload
         }
-    },
+    }
 })
 
 export const {changeLanguage} = globalSlice.actions

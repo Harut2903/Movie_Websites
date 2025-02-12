@@ -1,28 +1,62 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getFilms } from "../../store/Slices/filmsSlice";
-
-export type FilmObj = {
-    page : number,
-    language : string
-}
+import { useEffect, useState } from "react"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
+import { changePage, getFilms } from "../../store/slices/filmsSlice"
+import { useNavigate } from "react-router-dom"
+import './index.css'
+import FilmCard from "../../components/FilmCard/FilmCard"
+import { FetchFilmsType } from "../../types"
 
 
 const Home = () => {
+  const [isScroll, setIsScroll] = useState(false)
 
-    const dispatch = useAppDispatch();
-    const {language} = useAppSelector((state) => state.globalData);
-    const {results} = useAppSelector((state) => state.filmsData);
-  
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const { language } = useAppSelector((state) => state.globalData)
 
+  const { results, page, total_results } = useAppSelector((state) => state.filmsData)
 
-    let obj : FilmObj = {page : 1, language}
+  let obj: FetchFilmsType = { page, language }
 
-    useEffect(() => {
+  useEffect(() => {
+    navigate(`?page=${page}&language=${language}`)
     dispatch(getFilms(obj))
-  }, []);
+  }, [language, page])
 
-  return <div>Home</div>;
-};
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll)
+  }, [])
 
-export default Home;
+
+  useEffect(() => {
+    if (isScroll) {
+      dispatch(changePage())
+    }
+  }, [isScroll])
+
+  const handleScroll = (e: any) => {
+
+
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
+      setIsScroll(true)
+    } else {
+      setIsScroll(false)
+    }
+  }
+  return (
+    <div className="home">
+      <div className="films-block">
+        {
+          results.map((film) => {
+            return <FilmCard key={film.id} film={film} />
+          })
+        }
+      </div>
+      <div className="scroll-button">
+        <button className="scroll-button"> {total_results} </button>
+      </div>
+    </div>
+  )
+}
+
+export default Home

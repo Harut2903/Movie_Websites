@@ -1,21 +1,21 @@
-import './App.css'
-import Header from './components/Header/Header'
-import { Route, Routes } from 'react-router-dom'
-import Home from './pages/Home/Home'
-
+import "./App.css";
+import Header from "./components/Header/Header";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Film from "./pages/Film/Film";
 
 function App() {
-
-
   return (
-   <div>
+    <div className="app-container">
       <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-      </Routes>
-   </div>
-      
-  )
+      <main className="app-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/film/:id" element={<Film />} />
+        </Routes>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
