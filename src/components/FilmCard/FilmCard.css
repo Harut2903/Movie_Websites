@@ -1,0 +1,68 @@
+.film-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #2a2a3b;
+    border-radius: 12px;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 200px;
+}
+
+.film-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.film-card__image {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.film-card__image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.film-card:hover .film-card__image img {
+    opacity: 0.9;
+}
+
+.film-card__title {
+    font-size: 16px;
+    text-align: center;
+    margin: 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .film-card {
+        width: 160px;
+        padding: 10px;
+    }
+
+    .film-card__title {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .film-card {
+        width: 140px;
+        padding: 8px;
+    }
+
+    .film-card__title {
+        font-size: 12px;
+    }
+}

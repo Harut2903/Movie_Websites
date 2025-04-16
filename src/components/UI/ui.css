@@ -1,0 +1,41 @@
+.genres-btn {
+    background: linear-gradient(135deg, #ff9800, #e65100);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+.genres-btn:hover {
+    background: linear-gradient(135deg, #ffb74d, #ff9800);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.genres-btn:active {
+    background: linear-gradient(135deg, #e65100, #bf360c);
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 768px) {
+    .genres-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .genres-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 6px;
+    }
+}
